@@ -13,7 +13,7 @@ public class Manipulator : MonoBehaviour
     void Start()
     {
         // Отключаем все системы частиц при запуске игры
-        GameObject robotArmB = GameObject.Find("robot-arm-b");
+        GameObject robotArmB = GameObject.Find("robot-arm");
         if (robotArmB != null)
         {
             ParticleSystem[] particles = robotArmB.GetComponentsInChildren<ParticleSystem>();
@@ -26,7 +26,7 @@ public class Manipulator : MonoBehaviour
 
     public void ActivateParticlesAndSound()
     {
-        GameObject robotArmB = GameObject.Find("robot-arm-b");
+        GameObject robotArmB = GameObject.Find("robot-arm");
         if (robotArmB != null)
         {
             ParticleSystem[] particles = robotArmB.GetComponentsInChildren<ParticleSystem>();
