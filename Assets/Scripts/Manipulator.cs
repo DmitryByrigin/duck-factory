@@ -1,18 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class Manipulator : MonoBehaviour
 {
-    public AudioSource audioSource; // Источник звука
-    public AudioClip brokenSound; // Звук сломанного манипулятора
-    public float particleDuration = 3f; // Продолжительность воспроизведения частиц
-    public Vector3 startPosition = new Vector3(0, 0.3f, 1.227249e-14f); // Начальная позиция
-    public Vector3 endPosition = new Vector3(0.02381663f, 0.1334263f, -0.06912978f); // Конечная позиция
-    public float moveTime = 2f; // Время перемещения
+    public AudioSource audioSource;
+    public AudioClip brokenSound;
+    public float particleDuration = 3f;
+    public Vector3 startPosition = new Vector3(0, 0.3f, 1.227249e-14f);
+    public Vector3 endPosition = new Vector3(0.02381663f, 0.1334263f, -0.06912978f);
+    public float moveTime = 2f;
+    private bool hasActivated = false;
 
     void Start()
     {
-        // Отключаем все системы частиц при запуске игры
         GameObject robotArmB = GameObject.Find("robot-arm");
         if (robotArmB != null)
         {
@@ -26,6 +26,7 @@ public class Manipulator : MonoBehaviour
 
     public void ActivateParticlesAndSound()
     {
+        hasActivated = true;
         GameObject robotArmB = GameObject.Find("robot-arm");
         if (robotArmB != null)
         {
@@ -36,7 +37,6 @@ public class Manipulator : MonoBehaviour
                 StartCoroutine(StopParticlesAfterTime(particleSystem, particleDuration));
             }
 
-            // Находим объект element_d и начинаем корутину для перемещения
             Transform elementD = robotArmB.transform.Find("element_a/element_b/element_c/element_d");
             if (elementD != null)
             {
@@ -44,11 +44,15 @@ public class Manipulator : MonoBehaviour
             }
         }
 
-        // Воспроизводим звук сломанного манипулятора
         if (audioSource != null && brokenSound != null)
         {
             audioSource.PlayOneShot(brokenSound);
         }
+    }
+
+    public bool HasActivated()
+    {
+        return hasActivated;
     }
 
     IEnumerator MoveOverTime(Transform objectToMove, Vector3 startPosition, Vector3 endPosition, float duration)
@@ -64,7 +68,6 @@ public class Manipulator : MonoBehaviour
 
         objectToMove.localPosition = endPosition;
 
-        // Перемещаем объект обратно на начальную позицию
         elapsed = 0.0f;
         while (elapsed < duration)
         {
@@ -81,4 +84,9 @@ public class Manipulator : MonoBehaviour
         yield return new WaitForSeconds(delay);
         particleSystem.Stop();
     }
+    public void StopAll()
+    {
+        StopAllCoroutines();
+    }
+
 }
