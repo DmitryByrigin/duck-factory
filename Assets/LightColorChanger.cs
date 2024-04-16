@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class LightColorChanger : MonoBehaviour
 {
     public Light light1;
     public Light light2;
+    public TextMeshProUGUI taskText;
 
     public SocketObjectChecker redSocket;
     public SocketObjectCheckerGreen greenSocket;
@@ -24,6 +26,7 @@ public class LightColorChanger : MonoBehaviour
             if (light1 != null)
             {
                 light1.color = Color.white;
+                taskText.text = "1. Task, clear the room, using a machine.\n2. Task, insert the fuses into the shield.\n3. Task, clear the room by hands.";
             }
 
             if (light2 != null)
