@@ -10,7 +10,7 @@ public class TaskManager : MonoBehaviour
     void Start()
     {
         // Изначально задаем текст задания
-        taskText.text = "1. Task, clear the room.";
+        taskText.text = "1. Task, clear the room, using a machine.";
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class TaskManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Box").Length <= boxCount)
         {
             // Обновляем текст задания
-            taskText.text = "1. Task, clear the room.\n2. Task, insert the fuses into the shield.";
+            taskText.text = "1. Task, clear the room, using a machine.\n2. Task, insert the fuses into the shield.\n3. Task, clear the room by hands.\n4.Enter the code about the execution of tasks in ATM";
             boxCount = GameObject.FindGameObjectsWithTag("Box").Length; // Обновляем количество активных объектов с тегом Box
         }
     }

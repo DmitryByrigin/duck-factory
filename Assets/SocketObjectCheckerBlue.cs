@@ -4,6 +4,10 @@ public class SocketObjectCheckerBlue : MonoBehaviour
 {
     public GameObject currentObject; // Объект, который в данный момент находится в сокете
 
+    void Start()
+    {
+        currentObject = null;
+    }
     private void OnTriggerEnter(Collider other)
     {
         currentObject = other.gameObject;
