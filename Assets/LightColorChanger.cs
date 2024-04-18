@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LightColorChanger : MonoBehaviour
 {
@@ -11,22 +12,24 @@ public class LightColorChanger : MonoBehaviour
     public SocketObjectCheckerGreen greenSocket;
     public SocketObjectCheckerBlue blueSocket;
 
-    public GameObject requiredObjectRed; // Объект, который должен быть вставлен в RedSocket
-    public GameObject requiredObjectGreen; // Объект, который должен быть вставлен в GreenSocket
-    public GameObject requiredObjectBlue; // Объект, который должен быть вставлен в BlueSocket
+    public GameObject requiredObjectRed;
+    public GameObject requiredObjectGreen;
+    public GameObject requiredObjectBlue;
 
-    private bool hasChangedColor = false; // Добавляем новую переменную, чтобы отслеживать, был ли уже изменен цвет света
+    public UnityEvent OnEnterEvent;
+    private bool hasChangedColor = false;
 
     void Update()
     {
         if (!hasChangedColor && redSocket.CheckObject(requiredObjectRed) && greenSocket.CheckObject(requiredObjectGreen) && blueSocket.CheckObject(requiredObjectBlue))
         {
-            hasChangedColor = true; // Устанавливаем переменную в true, чтобы цвет света менялся только один раз
+            hasChangedColor = true;
 
+            OnEnterEvent.Invoke();
             if (light1 != null)
             {
                 light1.color = Color.white;
-                taskText.text = "1. Task, clear the room, using a machine.\n2. Task, insert the fuses into the shield.\n3. Task, clear the room by hands.";
+                taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.";
             }
 
             if (light2 != null)

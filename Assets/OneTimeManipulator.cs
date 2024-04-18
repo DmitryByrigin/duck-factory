@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OneTimeManipulator : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class OneTimeManipulator : MonoBehaviour
     public Light light1;
     public Light light2;
     private bool hasActivated = false;
+    public UnityEvent OnEnterEvent;
 
     void Update()
     {
@@ -16,12 +18,13 @@ public class OneTimeManipulator : MonoBehaviour
             hasActivated = true;
             manipulator.StopAll();
             manipulator.enabled = false;
+            OnEnterEvent.Invoke();
 
             if (light1 != null)
             {
                 light1.color = Color.red;
                 light1.intensity *= 5;
-                taskText.text = "1. Task, clear the room, using a machine.\n2. Task, insert the fuses into the shield.\n";
+                taskText.text = "1.                        Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n";
 
             }
 
