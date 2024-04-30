@@ -139,8 +139,8 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.1.0
   preloadedAssets:
-  - {fileID: 8927701289088878337, guid: 6ca7df5f6e5363d4291c76b3c903a309, type: 2}
   - {fileID: -4889985111877246273, guid: 3089811bf7f134a43bace96ab6cf1559, type: 2}
+  - {fileID: 8927701289088878337, guid: 6ca7df5f6e5363d4291c76b3c903a309, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -863,6 +863,7 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
   metroSplashScreenUseBackgroundColor: 0
+  syncCapabilities: 0
   platformCapabilities: {}
   metroTargetDeviceFamilies: {}
   metroFTAName: 
