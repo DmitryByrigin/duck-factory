@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using TMPro;
 
 public class DuckSpawner : MonoBehaviour
 {
@@ -6,8 +8,20 @@ public class DuckSpawner : MonoBehaviour
     public int numberOfDucks = 10; // Количество уток
     public float spawnRate = 1f; // Скорость появления уток
     public float rotationSpeed = 20f; // Скорость вращения уток
+    public float fadeInTime = 3.0f; // Время для появления текста
+    public TextMeshProUGUI endText; // Объект TextMeshPro
+    public AudioClip quackSound; // Звук крякания утки
 
     private float nextSpawnTime;
+    private bool textShown = false; // Был ли текст уже показан
+
+    void Start()
+    {
+        if (endText != null)
+        {
+            endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, 0f); // Начинаем с полностью прозрачного текста
+        }
+    }
 
     void Update()
     {
@@ -18,6 +32,11 @@ public class DuckSpawner : MonoBehaviour
                 SpawnDuck();
             }
             nextSpawnTime = Time.time + 1f / spawnRate;
+            if (!textShown) // Если текст еще не был показан
+            {
+                StartCoroutine(ShowEndTextAfterDelay(3f)); // Запускаем корутину с задержкой в 1 секунду
+                textShown = true; // Устанавливаем флаг, что текст был показан
+            }
         }
     }
 
@@ -48,5 +67,41 @@ public class DuckSpawner : MonoBehaviour
 
         // Добавляем силу, чтобы утка падала вниз
         duck.GetComponent<Rigidbody>().AddForce(Vector3.down * 0.01f, ForceMode.Impulse);
+
+        // Воспроизводим звук крякания утки с задержкой и случайной громкостью
+        StartCoroutine(PlayQuackSound(duck));
+    }
+
+    IEnumerator PlayQuackSound(GameObject duck)
+    {
+        yield return new WaitForSeconds(0.5f); // Задержка в полсекунды
+
+        AudioSource audioSource = duck.AddComponent<AudioSource>();
+        audioSource.clip = quackSound;
+        audioSource.volume = Random.Range(0.3f, 0.8f); // Случайная громкость от 30% до 100%
+        audioSource.Play();
+    }
+
+
+
+    IEnumerator FadeIn()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeInTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsedTime / fadeInTime);
+            endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, alpha);
+            yield return null;
+        }
+    }
+
+    IEnumerator ShowEndTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        endText.text = "THE END!"; // Устанавливаем текст в "THE END!"
+        StartCoroutine(FadeIn());
     }
 }

@@ -21,6 +21,8 @@ TagManager:
   - Handset
   - PhoneSocket
   - Roof
+  - TheEndText
+  - Duck
   layers:
   - Default
   - TransparentFX
