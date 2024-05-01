@@ -18,7 +18,7 @@ public class TaskManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Box").Length <= boxCount)
         {
             OnEnterEvent.Invoke();
-            taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.\n                        4. Enter the code about the execution of tasks in ATM.";
+            taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.\n                        4. Enter the code about the execution of tasks in ATM.\n                        Hint: Our worker always records all passwords";
             boxCount = GameObject.FindGameObjectsWithTag("Box").Length;
         }
     }
