@@ -18913,8 +18913,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.090155, z: 1}
+  m_Center: {x: -1.6797236e-15, y: 0.04507768, z: -3.0345527e-15}
 --- !u!1 &1152037190
 GameObject:
   m_ObjectHideFlags: 0
@@ -22184,6 +22184,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000012, y: 3.9670294e-12, z: 2.0000012}
   m_Center: {x: -0.00000023841858, y: -0.00000047683716, z: 0.000000059604645}
+--- !u!114 &1353213486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281010752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4583f988b01711f40a519aeff2341270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duckPrefab: {fileID: 919132149155446097, guid: 53e0968b286f5b6469c1fb18ce3b19f5,
+    type: 3}
+  numberOfDucks: 10
+  spawnRate: 1
+  rotationSpeed: 20
 --- !u!1 &1357418969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b675696a55073154783a67dabdccccd8,
@@ -27797,6 +27814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: roof
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd390adf8b8491c4b9de4625939bb61f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Roof
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27805,6 +27827,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1353213483}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bd390adf8b8491c4b9de4625939bb61f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1353213486}
   m_SourcePrefab: {fileID: 100100000, guid: bd390adf8b8491c4b9de4625939bb61f, type: 3}
 --- !u!1 &1813656556
 GameObject:
