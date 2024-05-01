@@ -17,6 +17,10 @@ TagManager:
   - Right Hand
   - Tablet
   - Partition
+  - ScreenTelefon
+  - Handset
+  - PhoneSocket
+  - Roof
   layers:
   - Default
   - TransparentFX

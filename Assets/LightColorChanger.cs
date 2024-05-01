@@ -30,6 +30,7 @@ public class LightColorChanger : MonoBehaviour
             {
                 light1.color = Color.white;
                 taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.";
+
             }
 
             if (light2 != null)
