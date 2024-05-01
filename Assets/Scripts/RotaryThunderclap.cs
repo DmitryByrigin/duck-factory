@@ -17,7 +17,7 @@ public class RotateObject : MonoBehaviour
         }
     }
 
-    IEnumerator RotateOverTime(Transform objectToRotate, Vector3 leftRotation, Vector3 rightRotation, float speed)
+    public IEnumerator RotateOverTime(Transform objectToRotate, Vector3 leftRotation, Vector3 rightRotation, float speed)
     {
         while (true)
         {

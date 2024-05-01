@@ -23,6 +23,7 @@ TagManager:
   - Roof
   - TheEndText
   - Duck
+  - Plug
   layers:
   - Default
   - TransparentFX

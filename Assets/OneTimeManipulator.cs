@@ -24,7 +24,7 @@ public class OneTimeManipulator : MonoBehaviour
             {
                 light1.color = Color.red;
                 light1.intensity *= 5;
-                taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n";
+                taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        Hint: Plugs are hidden somewhere in the room";
 
             }
 

@@ -19,24 +19,24 @@ public class LightColorChanger : MonoBehaviour
     public UnityEvent OnEnterEvent;
     private bool hasChangedColor = false;
 
-    void Update()
+void Update()
+{
+    if (!hasChangedColor && redSocket.CheckObject(requiredObjectRed) && greenSocket.CheckObject(requiredObjectGreen) && blueSocket.CheckObject(requiredObjectBlue))
     {
-        if (!hasChangedColor && redSocket.CheckObject(requiredObjectRed) && greenSocket.CheckObject(requiredObjectGreen) && blueSocket.CheckObject(requiredObjectBlue))
+        hasChangedColor = true;
+
+        OnEnterEvent.Invoke();
+        if (light1 != null)
         {
-            hasChangedColor = true;
+            light1.color = Color.white;
+            taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.";
+        }
 
-            OnEnterEvent.Invoke();
-            if (light1 != null)
-            {
-                light1.color = Color.white;
-                taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.";
-
-            }
-
-            if (light2 != null)
-            {
-                light2.color = Color.white;
-            }
+        if (light2 != null)
+        {
+            light2.color = Color.white;
         }
     }
+}
+
 }
