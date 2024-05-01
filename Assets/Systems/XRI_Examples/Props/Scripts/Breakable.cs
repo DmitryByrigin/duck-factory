@@ -1,11 +1,9 @@
-using System;
+﻿using System;
 using UnityEngine.Events;
+using UnityEngine;
 
 namespace UnityEngine.XR.Content.Interaction
 {
-    /// <summary>
-    /// Detects a collision with a tagged collider, replacing this object with a 'broken' version
-    /// </summary>
     public class Breakable : MonoBehaviour
     {
         [Serializable] public class BreakEvent : UnityEvent<GameObject, GameObject> { }
@@ -23,12 +21,12 @@ namespace UnityEngine.XR.Content.Interaction
             "The first parameter is the colliding object, the second parameter is the 'broken' version.")]
         BreakEvent m_OnBreak = new BreakEvent();
 
+        [SerializeField]
+        [Tooltip("The sound of the box breaking.")]
+        AudioClip m_BreakSound; // Звук разрезающейся коробки
+
         bool m_Destroyed = false;
 
-        /// <summary>
-        /// Events to fire when a matching object collides and break this object.
-        /// The first parameter is the colliding object, the second parameter is the 'broken' version.
-        /// </summary>
         public BreakEvent onBreak => m_OnBreak;
 
         void OnCollisionEnter(Collision collision)
@@ -41,6 +39,7 @@ namespace UnityEngine.XR.Content.Interaction
                 m_Destroyed = true;
                 var brokenVersion = Instantiate(m_BrokenVersion, transform.position, transform.rotation);
                 m_OnBreak.Invoke(collision.gameObject, brokenVersion);
+                AudioSource.PlayClipAtPoint(m_BreakSound, transform.position); // Воспроизводим звук разрезающейся коробки
                 Destroy(gameObject);
             }
         }

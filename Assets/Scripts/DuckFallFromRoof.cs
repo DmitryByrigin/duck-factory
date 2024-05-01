@@ -22,7 +22,7 @@ public class DuckSpawner : MonoBehaviour
         {
             endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, 0f); // Начинаем с полностью прозрачного текста
         }
-        StartCoroutine(GoToStartSceneAfterDelay(15f)); // Запускаем корутину с задержкой в 10 секунд
+      
     }
 
     void Update()
@@ -105,6 +105,7 @@ public class DuckSpawner : MonoBehaviour
 
         endText.text = "THE END!"; // Устанавливаем текст в "THE END!"
         StartCoroutine(FadeIn());
+        StartCoroutine(GoToStartSceneAfterDelay(15f)); // Запускаем корутину с задержкой в 10 секунд
     }
 
     IEnumerator GoToStartSceneAfterDelay(float delay)
