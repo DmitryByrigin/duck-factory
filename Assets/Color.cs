@@ -25,9 +25,9 @@ public class ChangeColor : MonoBehaviour
         {
             rend.material.color = Color.green;
         }
-        else
+/*        else
         {
             Debug.LogWarning("Unknown object color");
-        }
+        }*/
     }
 }
