@@ -38,8 +38,6 @@ public class PasswordChecker : MonoBehaviour
         {
             taskText.text = "                        1. Task, clear the room, using a machine.\n                        2. Task, insert the fuses into the shield.\n                        3. Task, clear the room by hands.\n                        4. Enter the code about the execution of tasks in ATM\n                        5. Use knive to cut the box.";
             OnEnterEvent.Invoke();
-
-            Debug.Log(taskText.text);
             tasks.text = "DONE"; // Устанавливаем текст на "DONE"
             tasks.fontStyle = FontStyles.Bold; // Делаем текст жирным
 

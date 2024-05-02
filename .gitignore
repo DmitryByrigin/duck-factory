@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+/[Ll]ibrary/PackageCache/com.unity.xr.management@4.4.1/Editor/Metadata/KnownPackages.cs
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -70,5 +71,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-
-!Reposetory/Library/PackageCache/com.unity.xr.management@4.4.1/Editor/Metadata/KnownPackages.cs

@@ -27,6 +27,7 @@ public class DuckSpawner : MonoBehaviour
 
     void Update()
     {
+        GameObject[] roofs = GameObject.FindGameObjectsWithTag("Roof");
         if (Time.time >= nextSpawnTime)
         {
             for (int i = 0; i < numberOfDucks; i++)
@@ -34,7 +35,7 @@ public class DuckSpawner : MonoBehaviour
                 SpawnDuck();
             }
             nextSpawnTime = Time.time + 1f / spawnRate;
-            if (!textShown) // Если текст еще не был показан
+            if (!textShown && roofs.Length > 0) // Если текст еще не был показан
             {
                 StartCoroutine(ShowEndTextAfterDelay(3f)); // Запускаем корутину с задержкой в 1 секунду
                 textShown = true; // Устанавливаем флаг, что текст был показан
@@ -46,6 +47,11 @@ public class DuckSpawner : MonoBehaviour
     {
         // Находим все объекты с тегом Roof
         GameObject[] roofs = GameObject.FindGameObjectsWithTag("Roof");
+
+        if (roofs.Length == 0)
+        {
+            return;
+        }
 
         // Выбираем случайную крышу
         GameObject roof = roofs[Random.Range(0, roofs.Length)];
