@@ -5,22 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class DuckSpawner : MonoBehaviour
 {
-    public GameObject duckPrefab; // Префаб утки
-    public int numberOfDucks = 10; // Количество уток
-    public float spawnRate = 1f; // Скорость появления уток
-    public float rotationSpeed = 20f; // Скорость вращения уток
-    public float fadeInTime = 3.0f; // Время для появления текста
-    public TextMeshProUGUI endText; // Объект TextMeshPro
-    public AudioClip quackSound; // Звук крякания утки
-
+    public GameObject duckPrefab;
+    public int numberOfDucks = 10;
+    public float spawnRate = 1f; 
+    public float rotationSpeed = 20f; 
+    public float fadeInTime = 3.0f; 
+    public TextMeshProUGUI endText;
+    public AudioClip quackSound; 
     private float nextSpawnTime;
-    private bool textShown = false; // Был ли текст уже показан
+    private bool textShown = false; 
 
     void Start()
     {
         if (endText != null)
         {
-            endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, 0f); // Начинаем с полностью прозрачного текста
+            endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, 0f);
         }
       
     }
@@ -35,17 +34,17 @@ public class DuckSpawner : MonoBehaviour
                 SpawnDuck();
             }
             nextSpawnTime = Time.time + 1f / spawnRate;
-            if (!textShown && roofs.Length > 0) // Если текст еще не был показан
+            if (!textShown && roofs.Length > 0) 
             {
-                StartCoroutine(ShowEndTextAfterDelay(3f)); // Запускаем корутину с задержкой в 1 секунду
-                textShown = true; // Устанавливаем флаг, что текст был показан
+                StartCoroutine(ShowEndTextAfterDelay(3f));
+                textShown = true; 
             }
         }
     }
 
     void SpawnDuck()
     {
-        // Находим все объекты с тегом Roof
+
         GameObject[] roofs = GameObject.FindGameObjectsWithTag("Roof");
 
         if (roofs.Length == 0)
@@ -53,40 +52,40 @@ public class DuckSpawner : MonoBehaviour
             return;
         }
 
-        // Выбираем случайную крышу
+
         GameObject roof = roofs[Random.Range(0, roofs.Length)];
 
-        // Получаем размеры крыши
+
         Renderer roofRenderer = roof.GetComponent<Renderer>();
         Vector3 roofSize = roofRenderer.bounds.size;
 
-        // Генерируем случайную позицию вокруг крыши
+
         Vector3 spawnPosition = roof.transform.position + new Vector3(
             Random.Range(-roofSize.x / 2, roofSize.x / 2),
             0,
             Random.Range(-roofSize.z / 2, roofSize.z / 2)
         );
 
-        // Создаем утку на крыше
+
         GameObject duck = Instantiate(duckPrefab, spawnPosition, Quaternion.identity);
 
-        // Добавляем вращение утке
+
         duck.GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * rotationSpeed;
 
-        // Добавляем силу, чтобы утка падала вниз
+
         duck.GetComponent<Rigidbody>().AddForce(Vector3.down * 0.01f, ForceMode.Impulse);
 
-        // Воспроизводим звук крякания утки с задержкой и случайной громкостью
+
         StartCoroutine(PlayQuackSound(duck));
     }
 
     IEnumerator PlayQuackSound(GameObject duck)
     {
-        yield return new WaitForSeconds(0.5f); // Задержка в полсекунды
+        yield return new WaitForSeconds(0.5f); 
 
         AudioSource audioSource = duck.AddComponent<AudioSource>();
         audioSource.clip = quackSound;
-        audioSource.volume = Random.Range(0.3f, 0.8f); // Случайная громкость от 30% до 100%
+        audioSource.volume = Random.Range(0.3f, 0.8f) / 25;
         audioSource.Play();
     }
 
@@ -109,14 +108,14 @@ public class DuckSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        endText.text = "THE END!"; // Устанавливаем текст в "THE END!"
+        endText.text = "THE END!"; 
         StartCoroutine(FadeIn());
-        StartCoroutine(GoToStartSceneAfterDelay(15f)); // Запускаем корутину с задержкой в 10 секунд
+        StartCoroutine(GoToStartSceneAfterDelay(28f));
     }
 
     IEnumerator GoToStartSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("1 Start Scene"); // Загружаем сцену "Start Scene"
+        SceneManager.LoadScene("1 Start Scene");
     }
 }
