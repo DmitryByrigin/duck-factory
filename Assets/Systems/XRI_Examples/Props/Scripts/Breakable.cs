@@ -17,6 +17,10 @@ namespace UnityEngine.XR.Content.Interaction
         string m_ColliderTag = "Destroyer";
 
         [SerializeField]
+        [Tooltip("The object that should be tagged as 'Roof' when this object is destroyed.")]
+        GameObject m_RoofObject; // Объект, которому будет установлен тег "Roof"
+
+        [SerializeField]
         [Tooltip("Events to fire when a matching object collides and break this object. " +
             "The first parameter is the colliding object, the second parameter is the 'broken' version.")]
         BreakEvent m_OnBreak = new BreakEvent();
@@ -28,6 +32,7 @@ namespace UnityEngine.XR.Content.Interaction
         bool m_Destroyed = false;
 
         public BreakEvent onBreak => m_OnBreak;
+        public UnityEvent OnEnterEvent;
 
         void OnCollisionEnter(Collision collision)
         {
@@ -40,6 +45,8 @@ namespace UnityEngine.XR.Content.Interaction
                 var brokenVersion = Instantiate(m_BrokenVersion, transform.position, transform.rotation);
                 m_OnBreak.Invoke(collision.gameObject, brokenVersion);
                 AudioSource.PlayClipAtPoint(m_BreakSound, transform.position); // Воспроизводим звук разрезающейся коробки
+                m_RoofObject.tag = "Roof";
+                OnEnterEvent.Invoke();
                 Destroy(gameObject);
             }
         }
