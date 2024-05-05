@@ -48,11 +48,11 @@ public class PasswordChecker : MonoBehaviour
             }
 
             // Запускаем корутину для мигания текста
-            StartCoroutine(FlashText());
+/*            StartCoroutine(FlashText());*/
         }
     }
 
-    IEnumerator FlashText()
+/*    IEnumerator FlashText()
     {
         while (true)
         {
@@ -60,5 +60,5 @@ public class PasswordChecker : MonoBehaviour
             tasks.enabled = !tasks.enabled;
             yield return new WaitForSeconds(0.5f);
         }
-    }
+    }*/
 }
